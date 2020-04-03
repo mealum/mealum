@@ -1,2 +1,2 @@
-# mealum.github.io
-mealum's homepage
+# mealum.me
+mealum's blog
