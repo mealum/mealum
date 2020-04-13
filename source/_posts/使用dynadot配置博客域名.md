@@ -48,11 +48,11 @@ tags:
 
 在之前的个人页面中进入DNS设置，在第一个选项中选择“自定义DNS”。
 
-![查看购买的域名](../images/ar3-5.png)
+![选择设置类型](../images/ar3-5.png)
 
 而后在域名记录中填入一行记录。记录类型选择“CNAME”，目标主机选择你网页所存放的主机域名或主机IP地址，我的网站托管在GitHub的个人主页上，这里填写mealum.github.io即可。注意这里填写的是主机名，不能写到GitHub中某个具体的仓库名哦（比如mealum.github.io/mealum这种写法是不可以的）。
 
-![查看购买的域名](../images/ar3-6.png)
+![填写CNAME和主机名](../images/ar3-6.png)
 
 点击保存，你的域名配置就完成了！
 
