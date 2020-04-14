@@ -66,4 +66,4 @@ tags:
 
 想要实现访问GitHub主页自动转到自己的域名下也非常简单，首先打开GitHub个人主页所存放仓库的设置界面，向下翻看到GitHub Pages的相关设置，在Custom domain中填入你的域名，点击保存，稍等片刻刷新页面，待到GitHub Pages设置下出现了“Your site is published at ……”的绿色字样时就代表你已经成功了！还等什么，点击你的域名试试吧！
 
-![查看购买的域名](../images/ar3-7.png)
+![配置GitHub Pages域名](../images/ar3-7.png)
