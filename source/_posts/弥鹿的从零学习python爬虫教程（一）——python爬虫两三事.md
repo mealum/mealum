@@ -33,7 +33,7 @@ tags: Python爬虫教程
 
 ## 网站中的robots.txt
 
-不知道你是不是第一次听说这个小东西，但我想告诉你，它很容易理解，其本质就是一张网站给爬虫程序的“禁令”，里面写着的内容都是不允许爬虫程序访问的页面。你可以试试看一下淘宝限制爬取的内容https://www.taobao.com/robots.txt，是不是下面这样的：
+不知道你是不是第一次听说这个小东西，但我想告诉你，它很容易理解，其本质就是一张网站给爬虫程序的“禁令”，里面写着的内容都是不允许爬虫程序访问的页面。你可以试试看一下淘宝限制爬取的内容[https://www.taobao.com/robots.txt](https://www.taobao.com/robots.txt)，是不是下面这样的：
 
 ```
 User-agent: Baiduspider
