@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mealum.me","root":"/","scheme":"Muse","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="今天来分享一下几个常用的markdown文档编写软件，我在初学markdown的时候也因为编辑器的选择而备受苦恼，希望这篇文章能帮助到同为初学者的你！ VScode易用指数：★★★★☆ 美观指数：★★★★☆ 推荐指数：★★★★★ VScode的名头就不用多讲了吧，说它是个百宝箱一点也不为过，markdown的编辑当然也不在话下，只需要“安装插件”、“开始编写”两个步骤，十分的方便。而且VScode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown文档编辑器大对比！">
+<meta property="og:url" content="https://mealum.me/2020/05/26/markdown%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91%E5%99%A8%E5%A4%A7%E5%AF%B9%E6%AF%94%EF%BC%81/">
+<meta property="og:site_name" content="Hi，弥鹿lum">
+<meta property="og:description" content="今天来分享一下几个常用的markdown文档编写软件，我在初学markdown的时候也因为编辑器的选择而备受苦恼，希望这篇文章能帮助到同为初学者的你！ VScode易用指数：★★★★☆ 美观指数：★★★★☆ 推荐指数：★★★★★ VScode的名头就不用多讲了吧，说它是个百宝箱一点也不为过，markdown的编辑当然也不在话下，只需要“安装插件”、“开始编写”两个步骤，十分的方便。而且VScode">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-26T17:58:18.000Z">
+<meta property="article:modified_time" content="2020-10-03T06:57:14.381Z">
+<meta property="article:author" content="mealum">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mealum.me/2020/05/26/markdown%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91%E5%99%A8%E5%A4%A7%E5%AF%B9%E6%AF%94%EF%BC%81/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>markdown文档编辑器大对比！ | Hi，弥鹿lum</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hi，弥鹿lum</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">青青子衿，悠悠我心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VScode"><span class="nav-number">1.</span> <span class="nav-text">VScode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typora"><span class="nav-number">2.</span> <span class="nav-text">Typora</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sublime-Text-3"><span class="nav-number">3.</span> <span class="nav-text">Sublime Text 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#印象笔记"><span class="nav-number">4.</span> <span class="nav-text">印象笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Marxico（马克飞象）"><span class="nav-number">5.</span> <span class="nav-text">Marxico（马克飞象）</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">mealum</p>
+  <div class="site-description" itemprop="description">这是弥鹿lum的博客，记录生活随想，分享计算机技术。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mealum.me/2020/05/26/markdown%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91%E5%99%A8%E5%A4%A7%E5%AF%B9%E6%AF%94%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="mealum">
+      <meta itemprop="description" content="这是弥鹿lum的博客，记录生活随想，分享计算机技术。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi，弥鹿lum">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          markdown文档编辑器大对比！
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-27 01:58:18" itemprop="dateCreated datePublished" datetime="2020-05-27T01:58:18+08:00">2020-05-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>今天来分享一下几个常用的markdown文档编写软件，我在初学markdown的时候也因为编辑器的选择而备受苦恼，希望这篇文章能帮助到同为初学者的你！</p>
+<h2 id="VScode"><a href="#VScode" class="headerlink" title="VScode"></a>VScode</h2><p>易用指数：★★★★☆</p>
+<p>美观指数：★★★★☆</p>
+<p>推荐指数：★★★★★</p>
+<p>VScode的名头就不用多讲了吧，说它是个百宝箱一点也不为过，markdown的编辑当然也不在话下，只需要“安装插件”、“开始编写”两个步骤，十分的方便。而且VScode平台有大量的使用者和维护者，遇到的问题基本都能百度到答案。给它易用指数少打一颗星的原因是对于初学者来说，插件的下载还有配置可能会有点费力，不像下面那个软件，即下即用；美观指数全凭个人感觉，没有那么让人眼前一亮。总体上来说，这是一个markdown编辑的优秀平台，尤其是在你的电脑上已经装有VScode的情况下，markdown插件不容错过。</p>
+<h2 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a>Typora</h2><p>易用指数：★★★★☆</p>
+<p>美观指数：★★★★★</p>
+<p>推荐指数：★★★★★</p>
+<p>Typora是我目前见到过的最新颖的markdown编辑器，也是我正在使用的编辑器。它最大的特点就是将传统markdown编辑器的编辑窗口和预览窗口合二为一，在输入md语句后会将格式代码隐藏，直接显示其对应的样式，非常方便且看上去十分美观。这里易用指数少一颗星是因为对于初学者而言，这种方式不能使你直接查看到markdown文本的格式代码，同时在编辑的时候，一些已经被隐藏了的md格式代码会出现无法编辑的情况，只能删除重写，算是一个小小的bug，稍稍影响使用体验。</p>
+<h2 id="Sublime-Text-3"><a href="#Sublime-Text-3" class="headerlink" title="Sublime Text 3"></a>Sublime Text 3</h2><p>易用指数：★★★☆☆</p>
+<p>美观指数：★★★☆☆</p>
+<p>推荐指数：★★★☆☆</p>
+<p>Sublime Text是我最早用的一款编辑器，知名度就不用说了，在Sublime Text上可以通过安装插件的方式实现markdown文档的编辑，但之前使用的时候会出现卡顿、编辑窗口和预览窗口不对应的情况，虽然不知道它现在优化的怎么样了，但它相比上面两个编辑器优点并不明显，总体使用感觉也没有上面两个舒服，除非是使用Sublime Text一家打天下的童鞋，不然的话还是更推荐上面两个编辑器。</p>
+<h2 id="印象笔记"><a href="#印象笔记" class="headerlink" title="印象笔记"></a>印象笔记</h2><p>易用指数：★★★★☆</p>
+<p>美观指数：★★★★☆</p>
+<p>推荐指数：★★★☆☆</p>
+<p>印象笔记内置了一键添加图表、添加流程图、添加甘特图等功能，对于这些不常用且很容易忘记的md语法，一键置入大大方便了我们的使用。但我想吐槽的是用印象笔记导出markdown文档简直令人抓狂，首先是根本不支持Windows用户将写好的markdown笔记导出为.md格式，为此我今天特意在Windows上下载了一个印象笔记来验证，果然如此，而如果不得不实现文档的导出的话，需要先将文档导出为.enex格式，然后使用Quiver把它转成.m d格式。（<del>这也太繁琐了吧…</del>），其次虽然在Mac上支持导出.md格式的文件，但找到这个功能在哪又异常艰难，我花了十分钟才找到，亲爱的旁友们你们也可以去试一哈😤</p>
+<h2 id="Marxico（马克飞象）"><a href="#Marxico（马克飞象）" class="headerlink" title="Marxico（马克飞象）"></a>Marxico（马克飞象）</h2><p>易用指数：★★★★★</p>
+<p>美观指数：★★★★☆</p>
+<p>推荐指数：★★★☆☆</p>
+<p>刚刚吐槽了印象笔记的文档导出问题，实际上，印象笔记是近几年才开始支持markdown的写作，在这之前，“印象笔记+markdown”的最佳解决方案是马克飞象（<del>其实现在也是</del>）。马克飞象是一款专为印象笔记打造的Markdown编辑器，支持高亮代码块、LaTeX公式、流程图等功能，是一款简洁高效的编辑器，同时提供桌面客户端以及离线Chrome App，支持移动端 Web，支持从印象笔记跳转编辑，轻松管理。 （好吧上面这句其实是我从官网复制过来的）。总而言之，使用体验还是很不错的。尤其是在你的电脑上没有安装任何一款编辑器的情况下，使用web端的文档编辑会让你立即进入工作状态。最后要说的是它是收费的，不交费的话就不能在印象笔记中同步新的笔记，但是编辑.md文档还是可以的，所以也没有太大关系。</p>
+<p>先写这么多哈，之后会加上对Atom、Mou、markdownpad、Dillinger等其他markdown编辑器的评测，敬请期待！</p>
+<p><em>弥鹿lum</em></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/12/%E6%88%91%E5%8F%88%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%81%EF%BC%88%E4%B8%80%E7%AF%87%E5%BF%83%E6%83%85%E5%BE%88%E5%A4%9A%E7%9F%A5%E8%AF%86%E5%BE%88%E5%B0%91%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%89/" rel="prev" title="我又回来了！（一篇心情很多知识很少的博文）">
+                  <i class="fa fa-chevron-left"></i> 我又回来了！（一篇心情很多知识很少的博文）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/06/25/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94python%E7%88%AC%E8%99%AB%E4%B8%A4%E4%B8%89%E4%BA%8B/" rel="next" title="弥鹿的从零学习python爬虫教程（一）——python爬虫两三事">
+                  弥鹿的从零学习python爬虫教程（一）——python爬虫两三事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mealum</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

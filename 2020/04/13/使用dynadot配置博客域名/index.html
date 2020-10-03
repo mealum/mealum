@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mealum.me","root":"/","scheme":"Muse","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="我的拖延症真是太强了…距离上次说写两篇博文已经过了一个多星期了。今天晚上还有点时间，那就先写一篇博客域名设置的博文吧。 闲谈将一个博客搭建在互联网上需要两个必备条件：  空间 域名  其中空间用来存储网页的相关代码，而域名则为其他人提供了一个可以访问这些网页代码的指引。这篇博文主要来说说第二点，也就是域名。 个人了解比较常用的域名注册商有：  GoDaddy（世界最大的域名注册商，支持中文界面）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用dynadot配置博客域名">
+<meta property="og:url" content="https://mealum.me/2020/04/13/%E4%BD%BF%E7%94%A8dynadot%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D/">
+<meta property="og:site_name" content="Hi，弥鹿lum">
+<meta property="og:description" content="我的拖延症真是太强了…距离上次说写两篇博文已经过了一个多星期了。今天晚上还有点时间，那就先写一篇博客域名设置的博文吧。 闲谈将一个博客搭建在互联网上需要两个必备条件：  空间 域名  其中空间用来存储网页的相关代码，而域名则为其他人提供了一个可以访问这些网页代码的指引。这篇博文主要来说说第二点，也就是域名。 个人了解比较常用的域名注册商有：  GoDaddy（世界最大的域名注册商，支持中文界面）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-1.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-2.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-3.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-4.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-5.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-6.png">
+<meta property="og:image" content="https://mealum.me/2020/04/13/images/ar3-7.png">
+<meta property="article:published_time" content="2020-04-13T18:46:28.000Z">
+<meta property="article:modified_time" content="2020-10-03T06:57:14.381Z">
+<meta property="article:author" content="mealum">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content=" 生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mealum.me/2020/04/13/images/ar3-1.png">
+
+
+<link rel="canonical" href="https://mealum.me/2020/04/13/%E4%BD%BF%E7%94%A8dynadot%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用dynadot配置博客域名 | Hi，弥鹿lum</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hi，弥鹿lum</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">青青子衿，悠悠我心</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#闲谈"><span class="nav-number">1.</span> <span class="nav-text">闲谈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名注册"><span class="nav-number">2.</span> <span class="nav-text">域名注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名配置"><span class="nav-number">3.</span> <span class="nav-text">域名配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub域名配置"><span class="nav-number">4.</span> <span class="nav-text">GitHub域名配置</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">mealum</p>
+  <div class="site-description" itemprop="description">这是弥鹿lum的博客，记录生活随想，分享计算机技术。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mealum.me/2020/04/13/%E4%BD%BF%E7%94%A8dynadot%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="mealum">
+      <meta itemprop="description" content="这是弥鹿lum的博客，记录生活随想，分享计算机技术。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hi，弥鹿lum">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用dynadot配置博客域名
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-14 02:46:28" itemprop="dateCreated datePublished" datetime="2020-04-14T02:46:28+08:00">2020-04-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>我的拖延症真是太强了…距离上次说写两篇博文已经过了一个多星期了。今天晚上还有点时间，那就先写一篇博客域名设置的博文吧。</p>
+<h2 id="闲谈"><a href="#闲谈" class="headerlink" title="闲谈"></a>闲谈</h2><p>将一个博客搭建在互联网上需要两个必备条件：</p>
+<ol>
+<li>空间</li>
+<li>域名</li>
+</ol>
+<p>其中空间用来存储网页的相关代码，而域名则为其他人提供了一个可以访问这些网页代码的指引。这篇博文主要来说说第二点，也就是域名。</p>
+<p>个人了解比较常用的域名注册商有：</p>
+<ul>
+<li><a href="https://sg.godaddy.com/zh" target="_blank" rel="noopener">GoDaddy</a>（世界最大的域名注册商，支持中文界面）</li>
+<li><a href="https://www.dynadot.com/" target="_blank" rel="noopener">dynadot</a>（性价比较高，同样支持中文界面）</li>
+<li><a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener">万网</a>（即阿里云域名服务商，国内最好的域名服务商，注册需实名认证）</li>
+<li><a href="https://www.namecheap.com/" target="_blank" rel="noopener">namecheap</a>（30天试用期内可退款，据说续费较贵）</li>
+</ul>
+<p>由于万网不提供.me的域名注册，而同样的域名Godaddy要比Dynadot贵了将近一倍（<del>也有可能是它的服务更稳定些？</del>），我最后选择了性价比较高的Dynadot。</p>
+<h2 id="域名注册"><a href="#域名注册" class="headerlink" title="域名注册"></a>域名注册</h2><p>进入dynadot的主页后，不必注册即可搜索期望的域名。在选好中意的域名之后进入购物车查看，然后就可以付费了。在正式付费前会要求登录/注册，完成后即可出现付款界面。</p>
+<p><img src="../images/ar3-1.png" alt="搜索期望的域名"></p>
+<p><img src="../images/ar3-2.png" alt="查看购物车"></p>
+<p><img src="../images/ar3-3.png" alt="进行付款"></p>
+<p>付款完成后可以在个人页面中看到已购买的域名信息。</p>
+<p><img src="../images/ar3-4.png" alt="查看购买的域名"></p>
+<h2 id="域名配置"><a href="#域名配置" class="headerlink" title="域名配置"></a>域名配置</h2><p>在完成了你的域名购买之后，接下来的任务就是要让它指向你网页的存储空间。我的博客托管在GitHub上，所以对于我来讲，这一步的工作就是将域名指向我个人的GitHub服务器。向下看，操作很简单。</p>
+<p>在之前的个人页面中进入DNS设置，在第一个选项中选择“自定义DNS”。</p>
+<p><img src="../images/ar3-5.png" alt="选择设置类型"></p>
+<p>而后在域名记录中填入一行记录。记录类型选择“CNAME”，目标主机选择你网页所存放的主机域名或主机IP地址，我的网站托管在GitHub的个人主页上，这里填写mealum.github.io即可。注意这里填写的是主机名，不能写到GitHub中某个具体的仓库名哦（比如mealum.github.io/mealum这种写法是不可以的）。</p>
+<p><img src="../images/ar3-6.png" alt="填写CNAME和主机名"></p>
+<p>点击保存，你的域名配置就完成了！</p>
+<p>但是，这还没有结束！</p>
+<h2 id="GitHub域名配置"><a href="#GitHub域名配置" class="headerlink" title="GitHub域名配置"></a>GitHub域名配置</h2><p>我们现在已经将购买好的域名指向了自己的GitHub主页，访问域名即访问该主页。但是现在直接访问GitHub主页是无法转到我们购买的域名下的。</p>
+<p>想要实现访问GitHub主页自动转到自己的域名下也非常简单，首先打开GitHub个人主页所存放仓库的设置界面，向下翻看到GitHub Pages的相关设置，在Custom domain中填入你的域名，点击保存，稍等片刻刷新页面，待到GitHub Pages设置下出现了“Your site is published at ……”的绿色字样时就代表你已经成功了！还等什么，点击你的域名试试吧！</p>
+<p><img src="../images/ar3-7.png" alt="配置GitHub Pages域名"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/01/%E5%AF%B9%E8%BF%99%E5%8D%81%E5%A4%A9%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E6%80%BB%E7%BB%93/" rel="prev" title="对这十天的一个小小总结">
+                  <i class="fa fa-chevron-left"></i> 对这十天的一个小小总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/14/%E5%A6%96%E5%B0%BE%E8%AE%A1%E5%88%92%EF%BC%8C%E5%87%BA%E5%8A%A8%EF%BC%81/" rel="next" title="妖尾计划，出动！">
+                  妖尾计划，出动！ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mealum</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
