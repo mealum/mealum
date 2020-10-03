@@ -94,13 +94,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>弥鹿的从零学习python爬虫教程（三）——把它“post”出去吧！</p>
+<h5 id="本节所需："><a href="#本节所需：" class="headerlink" title="本节所需："></a>本节所需：</h5><ul>
+<li>requests库</li>
+<li>一个可以接收信息的网站</li>
+</ul>
+<hr>
+<blockquote>
+<p>post就像寄信一样，你把信件包装好寄出，之后等待着可能出现的对方的回信。</p>
+<p align="right">——弥鹿的总结</p>
+</blockquote>
+<p>我们将以<a href="http://fanyi.youdao.com/" target="_blank" rel="noopener">有道翻译</a>为例，从信件往来的四个步骤（写信、包装信封、寄信、收信）来介绍post方法的具体应用</p>
+<h3 id="写信"><a href="#写信" class="headerlink" title="写信"></a>写信</h3><p>在开始编写代码之前，让我们打开有道翻译的页面看看它是如何工作的。</p>
+<p>首先，在进入有道翻译页面后，我们需要打开页面检查工具，并选择其中的<strong>Network</strong>项，如下图。</p>
+<p><img src="../images/PythonLearning/p3-1.png" alt="有道翻译首页"></p>
+<p>网页检查工具的<strong>Network</strong>项可以清晰地记录你打开该项之后所请求的所有页面资源，这时我们在网页的翻译框中输入一个英文单词，看看右边的检查工具会有怎样的变化呢？</p>
+<p><img src="../images/PythonLearning/p3-2.png" alt="输入单词后的变化"></p>
+<p>可以看到，在输入了一个单词后，网页共请求了4个资源，我们单击其中的第一个也就是以<em>translate</em>开头的资源项，可以发现右侧显示出了我们请求该资源的<strong>Headers</strong>，也就是<strong>请求头</strong>。其中存放了我们请求该资源所需要的信息，对应在本翻译页面来说，也即存储了我们请求获得翻译结果所需要的信息。</p>
+<img src="../images/PythonLearning/p3-3.png" alt="Headers" style="zoom:50%;" />
+
+<p>在<strong>Headers</strong>中一直向下翻阅，我们可以看到<strong>From Data</strong>一项，这其中便是存放我们需要post出去的信息，找找看，我们刚刚写的单词在哪里呢？</p>
+<img src="../images/PythonLearning/p3-4.png" alt="From Data" style="zoom:50%;" />
+
+<p>可以联想到的是，这个<strong>From Data</strong>项也就对应了我们写信的内容。在找到了写信的内容后，我们就需要把内容打包成一封信，打开你的python运行环境，让我们继续！</p>
+<h3 id="包装信封"><a href="#包装信封" class="headerlink" title="包装信封"></a>包装信封</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">fromdata = &#123;</span><br><span class="line">  <span class="string">"i"</span>: <span class="string">"deer"</span>, </span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"AUTO"</span>, </span><br><span class="line">  <span class="string">"to"</span>: <span class="string">"AUTO"</span>, </span><br><span class="line">  <span class="string">"smartresult"</span>: <span class="string">"dict"</span>, </span><br><span class="line">  <span class="string">"client"</span>: <span class="string">"fanyideskweb"</span>, </span><br><span class="line">  <span class="string">"salt"</span>: <span class="string">"16017025573901"</span>,</span><br><span class="line">  <span class="string">"sign"</span>: <span class="string">"2cd31a6ff069b016290917aa4d6602a4"</span>,</span><br><span class="line">  <span class="string">"Its"</span>: <span class="string">"1601702557390"</span>, </span><br><span class="line">  <span class="string">"bv"</span>: <span class="string">"62389a55a5b1fbaa2a4d4a7ea3785261"</span>, </span><br><span class="line">  <span class="string">"doctype"</span>: <span class="string">"json"</span>, </span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"2.1"</span>, </span><br><span class="line">  <span class="string">"keyfrom"</span>: <span class="string">"fanyi.web"</span>, </span><br><span class="line">  <span class="string">"action"</span>: <span class="string">"FY_BY_REALTlME"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是不是很简单？我们只需要将网页检查工具中的<strong>From Data</strong>复制下来，在每一项打上引号最后再加一个大括号组成一个dict即可（只是打引号的工作有些费事，小伙伴们有什么更简单的方法吗？）。</p>
+<h3 id="寄信"><a href="#寄信" class="headerlink" title="寄信"></a>寄信</h3><p>接下来就是大家期待已久的步骤——寄信，而这一步也异常的简单，我们首先定义寄信的目的地址，还记得在网页检查工具中找到的<em>translate</em>开头的资源吗？右键点击它，选择其中的<strong>Copy link address</strong>项即可将该请求的目的地址复制下来；之后使用requests库中的post方法将之前打包好的信的内容一起邮寄到定义好的目的地址。</p>
+<img src="../images/PythonLearning/p3-5.png" alt="Copy link address" style="zoom:50%;" />
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">"http://fanyi.youdao.com/translate_o?smartresult=dict&amp;smartresult=rule"</span> <span class="comment"># 获取到的目的地址</span></span><br><span class="line">response = requests.post(url, data=fromdata) <span class="comment"># 使用requests库中的post方法</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="收信"><a href="#收信" class="headerlink" title="收信"></a>收信</h3><p>现在我们要看看对方收到我们的信件后给我们作出了怎样的回应</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+
+<p>哎？你是不是也收到了一条<code>{&quot;errorCode&quot;:50}</code>的json格式的回信呢？你可能想问，为什么我没有收到我想要的翻译结果呢？没错，这也是我当时的困惑。万能的百度告诉我们这是有道词典的反爬虫机制在作怪，我想这应该和我们信的内容中的时间戳有关，后台服务器验证出了其中存在的问题当然就不会给我们一个正确的回复啦。</p>
+<p>那就没有办法获得翻译结果了吗？</p>
+<p>办法是有的，而且很简单！你只需要将url中的<code>translate_o</code>改为<code>translate</code>，再次运行一遍程序，就可以看到想要的翻译结果啦。而且你还可以将结果中的无用部分剔除：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">content = json.loads(response.text)</span><br><span class="line">print(content[<span class="string">"translateResult"</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="string">"tgt"</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+<p>到此为止，你已经完成了第一个简单而实用的post程序。怎么样，爬虫的世界有趣吗！</p>
+<p><em>弥鹿lum</em></p>
+<p><em>版权所有，未经许可，禁止转载</em></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/10/03/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E6%8A%8A%E5%AE%83%E2%80%9Cpost%E2%80%9D%E5%87%BA%E5%8E%BB%E5%90%A7%EF%BC%81/" data-id="ckftabr1v00080jt7fie1e1kb" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/10/03/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E6%8A%8A%E5%AE%83%E2%80%9Cpost%E2%80%9D%E5%87%BA%E5%8E%BB%E5%90%A7%EF%BC%81/" data-id="ckftah64f00082lssgv9x1jof" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B/" rel="tag">Python爬虫教程</a></li></ul>
+
     </footer>
   </div>
   
@@ -137,7 +183,7 @@
 <hr>
 <blockquote>
 <p>get是一种最为常见的HTTP请求，顾名思义，get能让你从远程服务器中获取到所需要的信息，这包括网页中的文字、图片、视频、音频、服务等各种你想要的东西。</p>
-<p align="right">——弥鹿的肤浅总结</p>
+<p align="right">——弥鹿的总结</p>
 </blockquote>
 <h3 id="网页检查工具"><a href="#网页检查工具" class="headerlink" title="网页检查工具"></a>网页检查工具</h3><p>我们通常是通过 <strong>在浏览器中输入地址</strong> 的方式来进行网页中的资源获取，浏览器的使用大大便捷了我们的网上冲浪体验，现在尝试在Chrome浏览器中输入我的博客网址（也可以是其他任意网址）：<a href="https://mealum.me">mealum.me</a>，在页面的空白处点击右键中的 <strong>检查</strong>（或直接按下F12），会出现下图中的网页检查工具，右上角显示的就是我们网页的html代码：</p>
 <p><img src="../images/PythonLearning/ar2-1%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7.png" alt="检查工具"></p>
@@ -154,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/06/27/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E4%BD%A0%E8%83%BD%E2%80%9Cget%E2%80%9D%E5%88%B0%E5%90%97%EF%BC%9F/" data-id="ckftabr1w00090jt77eudft7n" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/06/27/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E4%BD%A0%E8%83%BD%E2%80%9Cget%E2%80%9D%E5%88%B0%E5%90%97%EF%BC%9F/" data-id="ckftah64h00092lssfs5n3bdj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B/" rel="tag">Python爬虫教程</a></li></ul>
@@ -224,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/06/25/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94python%E7%88%AC%E8%99%AB%E4%B8%A4%E4%B8%89%E4%BA%8B/" data-id="ckftabr1t00050jt77d76eau8" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/06/25/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94python%E7%88%AC%E8%99%AB%E4%B8%A4%E4%B8%89%E4%BA%8B/" data-id="ckftah64d00052lss5qd07ito" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B/" rel="tag">Python爬虫教程</a></li></ul>
@@ -285,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/05/26/markdown%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91%E5%99%A8%E5%A4%A7%E5%AF%B9%E6%AF%94%EF%BC%81/" data-id="ckftabr1500000jt7e2ig5acq" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/05/26/markdown%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91%E5%99%A8%E5%A4%A7%E5%AF%B9%E6%AF%94%EF%BC%81/" data-id="ckftah63o00002lssgs5g3usc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
@@ -332,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/05/12/%E6%88%91%E5%8F%88%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%81%EF%BC%88%E4%B8%80%E7%AF%87%E5%BF%83%E6%83%85%E5%BE%88%E5%A4%9A%E7%9F%A5%E8%AF%86%E5%BE%88%E5%B0%91%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%89/" data-id="ckftabr1y000b0jt7dsdzaqyl" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/05/12/%E6%88%91%E5%8F%88%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%81%EF%BC%88%E4%B8%80%E7%AF%87%E5%BF%83%E6%83%85%E5%BE%88%E5%A4%9A%E7%9F%A5%E8%AF%86%E5%BE%88%E5%B0%91%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%89/" data-id="ckftah64j000b2lssbhqn5q8l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
@@ -374,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/04/14/%E5%A6%96%E5%B0%BE%E8%AE%A1%E5%88%92%EF%BC%8C%E5%87%BA%E5%8A%A8%EF%BC%81/" data-id="ckftabr1r00030jt721cxad1q" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/04/14/%E5%A6%96%E5%B0%BE%E8%AE%A1%E5%88%92%EF%BC%8C%E5%87%BA%E5%8A%A8%EF%BC%81/" data-id="ckftah64a00032lss3goteuwu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
@@ -443,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/04/13/%E4%BD%BF%E7%94%A8dynadot%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D/" data-id="ckftabr1n00010jt7366c8u4v" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/04/13/%E4%BD%BF%E7%94%A8dynadot%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D/" data-id="ckftah64600012lss1ic4eald" class="article-share-link">Share</a>
       
       
     </footer>
@@ -489,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/04/01/%E5%AF%B9%E8%BF%99%E5%8D%81%E5%A4%A9%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E6%80%BB%E7%BB%93/" data-id="ckftabr1s00040jt70w6v9stb" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/04/01/%E5%AF%B9%E8%BF%99%E5%8D%81%E5%A4%A9%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E6%80%BB%E7%BB%93/" data-id="ckftah64c00042lss2pt58v8e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -527,7 +573,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://mealum.me/2020/03/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/" data-id="ckftabr1z000d0jt7anox6s9s" class="article-share-link">Share</a>
+      <a data-url="https://mealum.me/2020/03/22/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/" data-id="ckftah64l000d2lssdqvw9j7f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +606,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B/" style="font-size: 20px;">Python爬虫教程</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">技术</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 20px;">生活</a>
+      <a href="/tags/Python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B/" style="font-size: 20px;">Python爬虫教程</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">技术</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">生活</a>
     </div>
   </div>
 
