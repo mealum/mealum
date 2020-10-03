@@ -31,19 +31,19 @@ tags: Python爬虫教程
 
 首先，在进入有道翻译页面后，我们需要打开页面检查工具，并选择其中的**Network**项，如下图。
 
-![有道翻译首页](../images/PythonLearning/p3-1.png)
+![有道翻译首页](https://mealum.me/images/PythonLearning/p3-1.png)
 
 网页检查工具的**Network**项可以清晰地记录你打开该项之后所请求的所有页面资源，这时我们在网页的翻译框中输入一个英文单词，看看右边的检查工具会有怎样的变化呢？
 
-![输入单词后的变化](../images/PythonLearning/p3-2.png)
+![输入单词后的变化](https://mealum.me/images/PythonLearning/p3-2.png)
 
 可以看到，在输入了一个单词后，网页共请求了4个资源，我们单击其中的第一个也就是以*translate*开头的资源项，可以发现右侧显示出了我们请求该资源的**Headers**，也就是**请求头**。其中存放了我们请求该资源所需要的信息，对应在本翻译页面来说，也即存储了我们请求获得翻译结果所需要的信息。
 
-<img src="../images/PythonLearning/p3-3.png" alt="Headers" style="zoom:50%;" />
+<img src="https://mealum.me/images/PythonLearning/p3-3.png" alt="Headers" style="zoom:50%;" />
 
 在**Headers**中一直向下翻阅，我们可以看到**From Data**一项，这其中便是存放我们需要post出去的信息，找找看，我们刚刚写的单词在哪里呢？
 
-<img src="../images/PythonLearning/p3-4.png" alt="From Data" style="zoom:50%;" />
+<img src="https://mealum.me/images/PythonLearning/p3-4.png" alt="From Data" style="zoom:50%;" />
 
 可以联想到的是，这个**From Data**项也就对应了我们写信的内容。在找到了写信的内容后，我们就需要把内容打包成一封信，打开你的python运行环境，让我们继续！
 
@@ -75,7 +75,7 @@ fromdata = {
 
 接下来就是大家期待已久的步骤——寄信，而这一步也异常的简单，我们首先定义寄信的目的地址，还记得在网页检查工具中找到的*translate*开头的资源吗？右键点击它，选择其中的**Copy link address**项即可将该请求的目的地址复制下来；之后使用requests库中的post方法将之前打包好的信的内容一起邮寄到定义好的目的地址。
 
-<img src="../images/PythonLearning/p3-5.png" alt="Copy link address" style="zoom:50%;" />
+<img src="https://mealum.me/images/PythonLearning/p3-5.png" alt="Copy link address" style="zoom:50%;" />
 
 ```python
 url = "http://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule" # 获取到的目的地址

@@ -12,7 +12,7 @@ tags:
 
 1. 空间
 2. 域名
-
+<!--more-->
 其中空间用来存储网页的相关代码，而域名则为其他人提供了一个可以访问这些网页代码的指引。这篇博文主要来说说第二点，也就是域名。
 
 个人了解比较常用的域名注册商有：
@@ -30,15 +30,15 @@ tags:
 
 进入dynadot的主页后，不必注册即可搜索期望的域名。在选好中意的域名之后进入购物车查看，然后就可以付费了。在正式付费前会要求登录/注册，完成后即可出现付款界面。
 
-![搜索期望的域名](../images/ar3-1.png)
+![搜索期望的域名](https://mealum.me/images/ar3-1.png)
 
-![查看购物车](../images/ar3-2.png)
+![查看购物车](https://mealum.me/images/ar3-2.png)
 
-![进行付款](../images/ar3-3.png)
+![进行付款](https://mealum.me/images/ar3-3.png)
 
 付款完成后可以在个人页面中看到已购买的域名信息。
 
-![查看购买的域名](../images/ar3-4.png)
+![查看购买的域名](https://mealum.me/images/ar3-4.png)
 
 
 
@@ -48,11 +48,11 @@ tags:
 
 在之前的个人页面中进入DNS设置，在第一个选项中选择“自定义DNS”。
 
-![选择设置类型](../images/ar3-5.png)
+![选择设置类型](https://mealum.me/images/ar3-5.png)
 
 而后在域名记录中填入一行记录。记录类型选择“CNAME”，目标主机选择你网页所存放的主机域名或主机IP地址，我的网站托管在GitHub的个人主页上，这里填写mealum.github.io即可。注意这里填写的是主机名，不能写到GitHub中某个具体的仓库名哦（比如mealum.github.io/mealum这种写法是不可以的）。
 
-![填写CNAME和主机名](../images/ar3-6.png)
+![填写CNAME和主机名](https://mealum.me/images/ar3-6.png)
 
 点击保存，你的域名配置就完成了！
 
@@ -66,4 +66,4 @@ tags:
 
 想要实现访问GitHub主页自动转到自己的域名下也非常简单，首先打开GitHub个人主页所存放仓库的设置界面，向下翻看到GitHub Pages的相关设置，在Custom domain中填入你的域名，点击保存，稍等片刻刷新页面，待到GitHub Pages设置下出现了“Your site is published at ……”的绿色字样时就代表你已经成功了！还等什么，点击你的域名试试吧！
 
-![配置GitHub Pages域名](../images/ar3-7.png)
+![配置GitHub Pages域名](https://mealum.me/images/ar3-7.png)
