@@ -231,7 +231,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2020-10-03 14:12:46 / 修改时间：14:57:14" itemprop="dateCreated datePublished" datetime="2020-10-03T14:12:46+08:00">2020-10-03</time>
+      <time title="创建时间：2020-10-03 14:12:46 / 修改时间：15:03:04" itemprop="dateCreated datePublished" datetime="2020-10-03T14:12:46+08:00">2020-10-03</time>
     </span>
 
   
@@ -255,40 +255,14 @@
 <p align="right">——弥鹿的总结</p>
 </blockquote>
 <p>我们将以<a href="http://fanyi.youdao.com/" target="_blank" rel="noopener">有道翻译</a>为例，从信件往来的四个步骤（写信、包装信封、寄信、收信）来介绍post方法的具体应用</p>
-<h3 id="写信"><a href="#写信" class="headerlink" title="写信"></a>写信</h3><p>在开始编写代码之前，让我们打开有道翻译的页面看看它是如何工作的。</p>
-<p>首先，在进入有道翻译页面后，我们需要打开页面检查工具，并选择其中的<strong>Network</strong>项，如下图。</p>
-<p><img src="../images/PythonLearning/p3-1.png" alt="有道翻译首页"></p>
-<p>网页检查工具的<strong>Network</strong>项可以清晰地记录你打开该项之后所请求的所有页面资源，这时我们在网页的翻译框中输入一个英文单词，看看右边的检查工具会有怎样的变化呢？</p>
-<p><img src="../images/PythonLearning/p3-2.png" alt="输入单词后的变化"></p>
-<p>可以看到，在输入了一个单词后，网页共请求了4个资源，我们单击其中的第一个也就是以<em>translate</em>开头的资源项，可以发现右侧显示出了我们请求该资源的<strong>Headers</strong>，也就是<strong>请求头</strong>。其中存放了我们请求该资源所需要的信息，对应在本翻译页面来说，也即存储了我们请求获得翻译结果所需要的信息。</p>
-<img src="../images/PythonLearning/p3-3.png" alt="Headers" style="zoom:50%;" />
-
-<p>在<strong>Headers</strong>中一直向下翻阅，我们可以看到<strong>From Data</strong>一项，这其中便是存放我们需要post出去的信息，找找看，我们刚刚写的单词在哪里呢？</p>
-<img src="../images/PythonLearning/p3-4.png" alt="From Data" style="zoom:50%;" />
-
-<p>可以联想到的是，这个<strong>From Data</strong>项也就对应了我们写信的内容。在找到了写信的内容后，我们就需要把内容打包成一封信，打开你的python运行环境，让我们继续！</p>
-<h3 id="包装信封"><a href="#包装信封" class="headerlink" title="包装信封"></a>包装信封</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">fromdata = &#123;</span><br><span class="line">  <span class="string">"i"</span>: <span class="string">"deer"</span>, </span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"AUTO"</span>, </span><br><span class="line">  <span class="string">"to"</span>: <span class="string">"AUTO"</span>, </span><br><span class="line">  <span class="string">"smartresult"</span>: <span class="string">"dict"</span>, </span><br><span class="line">  <span class="string">"client"</span>: <span class="string">"fanyideskweb"</span>, </span><br><span class="line">  <span class="string">"salt"</span>: <span class="string">"16017025573901"</span>,</span><br><span class="line">  <span class="string">"sign"</span>: <span class="string">"2cd31a6ff069b016290917aa4d6602a4"</span>,</span><br><span class="line">  <span class="string">"Its"</span>: <span class="string">"1601702557390"</span>, </span><br><span class="line">  <span class="string">"bv"</span>: <span class="string">"62389a55a5b1fbaa2a4d4a7ea3785261"</span>, </span><br><span class="line">  <span class="string">"doctype"</span>: <span class="string">"json"</span>, </span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"2.1"</span>, </span><br><span class="line">  <span class="string">"keyfrom"</span>: <span class="string">"fanyi.web"</span>, </span><br><span class="line">  <span class="string">"action"</span>: <span class="string">"FY_BY_REALTlME"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>是不是很简单？我们只需要将网页检查工具中的<strong>From Data</strong>复制下来，在每一项打上引号最后再加一个大括号组成一个dict即可（只是打引号的工作有些费事，小伙伴们有什么更简单的方法吗？）。</p>
-<h3 id="寄信"><a href="#寄信" class="headerlink" title="寄信"></a>寄信</h3><p>接下来就是大家期待已久的步骤——寄信，而这一步也异常的简单，我们首先定义寄信的目的地址，还记得在网页检查工具中找到的<em>translate</em>开头的资源吗？右键点击它，选择其中的<strong>Copy link address</strong>项即可将该请求的目的地址复制下来；之后使用requests库中的post方法将之前打包好的信的内容一起邮寄到定义好的目的地址。</p>
-<img src="../images/PythonLearning/p3-5.png" alt="Copy link address" style="zoom:50%;" />
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">"http://fanyi.youdao.com/translate_o?smartresult=dict&amp;smartresult=rule"</span> <span class="comment"># 获取到的目的地址</span></span><br><span class="line">response = requests.post(url, data=fromdata) <span class="comment"># 使用requests库中的post方法</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="收信"><a href="#收信" class="headerlink" title="收信"></a>收信</h3><p>现在我们要看看对方收到我们的信件后给我们作出了怎样的回应</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
-
-<p>哎？你是不是也收到了一条<code>{&quot;errorCode&quot;:50}</code>的json格式的回信呢？你可能想问，为什么我没有收到我想要的翻译结果呢？没错，这也是我当时的困惑。万能的百度告诉我们这是有道词典的反爬虫机制在作怪，我想这应该和我们信的内容中的时间戳有关，后台服务器验证出了其中存在的问题当然就不会给我们一个正确的回复啦。</p>
-<p>那就没有办法获得翻译结果了吗？</p>
-<p>办法是有的，而且很简单！你只需要将url中的<code>translate_o</code>改为<code>translate</code>，再次运行一遍程序，就可以看到想要的翻译结果啦。而且你还可以将结果中的无用部分剔除：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">content = json.loads(response.text)</span><br><span class="line">print(content[<span class="string">"translateResult"</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="string">"tgt"</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-<p>到此为止，你已经完成了第一个简单而实用的post程序。怎么样，爬虫的世界有趣吗！</p>
-<p><em>弥鹿lum</em></p>
-<p><em>版权所有，未经许可，禁止转载</em></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/03/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E6%8A%8A%E5%AE%83%E2%80%9Cpost%E2%80%9D%E5%87%BA%E5%8E%BB%E5%90%A7%EF%BC%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -346,7 +320,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -368,18 +342,14 @@
 <p>get是一种最为常见的HTTP请求，顾名思义，get能让你从远程服务器中获取到所需要的信息，这包括网页中的文字、图片、视频、音频、服务等各种你想要的东西。</p>
 <p align="right">——弥鹿的总结</p>
 </blockquote>
-<h3 id="网页检查工具"><a href="#网页检查工具" class="headerlink" title="网页检查工具"></a>网页检查工具</h3><p>我们通常是通过 <strong>在浏览器中输入地址</strong> 的方式来进行网页中的资源获取，浏览器的使用大大便捷了我们的网上冲浪体验，现在尝试在Chrome浏览器中输入我的博客网址（也可以是其他任意网址）：<a href="https://mealum.me">mealum.me</a>，在页面的空白处点击右键中的 <strong>检查</strong>（或直接按下F12），会出现下图中的网页检查工具，右上角显示的就是我们网页的html代码：</p>
-<p><img src="../images/PythonLearning/ar2-1%E6%A3%80%E6%9F%A5%E5%B7%A5%E5%85%B7.png" alt="检查工具"></p>
-<p>检查工具的使用范围可不仅仅是查看网页的html代码这么简单，其他更丰富的功能之后会提到，同时也有待大家一起探索哦。</p>
-<h3 id="使用Python来get"><a href="#使用Python来get" class="headerlink" title="使用Python来get"></a>使用Python来get</h3><p>在上面登录网址的过程中，浏览器的工作原理实际上就是向服务器发送get请求，然后得到服务器返回的html代码以及其他网页信息，并将其以网页形式展示给用户。</p>
-<p>但是现在，我们将抛开浏览器，看看如何使用一段python代码来发送get请求，同时获取服务器返回的html代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://mealum.me/"</span></span><br><span class="line">response = requests.get(url)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，在引入了requests包后，一个get函数、简单的三行代码，你就可以发送一个get请求，并将服务器返回的html代码展示出来，是不是很简单！（<del>感觉自己已经可以化身为一个浏览器了</del>）看一下这个超简易的get程序的返回结果，是否和你之前在浏览器的检查页面中看到的一样呢？（更换网址，你还可以get到更多网站的信息）</p>
-<p>get函数是python爬虫中使用最为广泛的一个函数，同时它又是这么的简单。学会了使用get，恭喜你，已经正式进入python爬虫的大门了，让我们一起享受爬虫的乐趣吧！</p>
-<p><em>弥鹿lum</em></p>
-<p><em>版权所有，未经许可，禁止转载</em></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/27/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E4%BD%A0%E8%83%BD%E2%80%9Cget%E2%80%9D%E5%88%B0%E5%90%97%EF%BC%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -437,7 +407,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -451,38 +421,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>从这篇文章开始，我将出一个《弥鹿的从零学习python爬虫教程》系列专栏，这是专栏的第一篇文章“python爬虫两三事”，简要介绍一下python爬虫的相关知识。话不多说，我们开始吧！</p>
-<h5 id="学习python爬虫你需要："><a href="#学习python爬虫你需要：" class="headerlink" title="学习python爬虫你需要："></a>学习python爬虫你需要：</h5><ul>
-<li>python运行环境</li>
-<li>chrome浏览器</li>
-</ul>
-<p>这两个是python爬虫学习的必备品哦，以后的章节就不再赘述了！</p>
-<hr>
-<blockquote>
-<p><strong>网络爬虫</strong>（web crawler），也叫网络蜘蛛（spider）、自动索引程序（automatic indexer），是一种用来自动浏览万维网的网络机器人。其目的一般为编纂网络索引。</p>
-<p align="right">——维基百科</p>
-</blockquote>
-<h2 id="简谈爬虫与Python爬虫"><a href="#简谈爬虫与Python爬虫" class="headerlink" title="简谈爬虫与Python爬虫"></a>简谈爬虫与Python爬虫</h2><p>虽然维基百科上把爬虫的目的概括为编纂网络索引，但大家都知道，爬虫的作用目前已经远远超过此范围。我们想批量获得网站上的信息、下载一些感兴趣的内容、与网站进行大规模的交互、甚至是刷票、抢票软件里都少不了爬虫的影子，可以说这是我们畅游互联网期间的一项有利工具！</p>
-<p>说起爬虫，我们需要谈谈它的历史。爬虫最早期的形式不是像现在一样对互联网中的各种内容进行获取，而只是一个简单的索引工具。在互联网的早期发展中，由于互联网中的文件数量过多，查询起来极为不便，一种对网络中的文件进行索引供用户查询的“<strong>电脑机器人</strong>”便应运而生，这便是爬虫的前身。之后这种索引工具慢慢发展成了我们现在熟知的搜索引擎，所以我们可以说，搜索引擎是一种最为常用的爬虫工具。</p>
-<p>那么你可能会问，C能写爬虫，Java能写爬虫，但为什么我们提到爬虫首先想到的就是Python呢？回答也很简单，因为它太简便了！Python中爬虫包的使用和其中各种API的定义都相当简洁与清晰，几行代码便可以实现一个简单的爬虫程序，而相同的工作放到C和Java中，你可能要编写几十行代码。还有一点，现在网络上关于Python爬虫的教程相当之多，你遇到的问题基本上都可以得到其他人的答案。而使用其他语言的话，学习过程中的诸多问题很可能得不到及时的帮助，如果没有探索精神的话，慢慢你就会学不下去了！</p>
-<h2 id="网站中的robots-txt"><a href="#网站中的robots-txt" class="headerlink" title="网站中的robots.txt"></a>网站中的robots.txt</h2><p>不知道你是不是第一次听说这个小东西，但我想告诉你，它很容易理解，其本质就是一张网站给爬虫程序的“禁令”，里面写着的内容都是不允许爬虫程序访问的页面。你可以试试看一下淘宝限制爬取的内容<a href="https://www.taobao.com/robots.txt" target="_blank" rel="noopener">https://www.taobao.com/robots.txt</a>，是不是下面这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User-agent: Baiduspider</span><br><span class="line">Disallow: &#x2F;</span><br><span class="line"></span><br><span class="line">User-agent: baiduspider</span><br><span class="line">Disallow: &#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>试一试理解一下其中的含义，有没有猜到，文件的意思是限制百度搜索引擎爬取该域名下的所有文件。其实这件事还要追溯到2008年9月8日，淘宝网正式宣布封杀百度爬虫。淘宝表示，此举是为了保护淘宝用户的利益，可以杜绝不法商家利用竞价排名、搜索优化等手段骗取消费者信任，并对优秀卖家进行鼓励。</p>
-<p>咳咳，说的有点偏。言归正传，是不是很神奇？一个.txt格式的文件居然能起到限制自动搜索程序访问的作用！但实际上不是这样，robots.txt的限制仅仅是道德层面的，也就是说，爬虫完全可以不顾robots.txt内的规定对其中限制的网页内容进行爬取。只是因为各个搜索引擎及大多规范的爬虫程序都严格遵守着这个规定，才有了现在相对稳定的爬虫环境。</p>
-<p><strong><em>如果你不想让你的爬虫程序涉及到法律相关的问题，请不要爬取robots.txt限制的内容！</em></strong></p>
-<h2 id="爬虫的风险"><a href="#爬虫的风险" class="headerlink" title="爬虫的风险"></a>爬虫的风险</h2><p>现在因为爬虫而违法的案例屡见不鲜，如果没有较强的法律意识，很容易因为爬虫或者其他黑客行为获得“破坏计算机信息系统罪”。那么如何保证自己的爬虫程序是合法的呢？我总结了一下，主要有以下几点：</p>
-<ol>
-<li>爬虫严格遵守网站robots.txt规定</li>
-<li>爬虫不涉及用户隐私</li>
-<li>不能影响站点正常运行（高频度大量访问站点轻则被禁IP，重则被当作DDoS严肃处理）</li>
-<li>不能影响站点正常经营（把别人数据库的东西都搬到自己的网站并且与对方竞争，也是会被严肃处理的）</li>
-<li>不能以盈利为目的</li>
-</ol>
-<p>做到上述这些，同时你的爬虫程序是以学习为目的的，我想不会出太大的问题哦。</p>
-<p>关于爬虫的一点点闲谈就说到这，从下一期开始我们将进入正式的学习，准备好你的python环境和chrome浏览器，我们准备开始！</p>
-<p><em>弥鹿lum</em></p>
-<p><em>版权所有，未经许可，禁止转载</em></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/25/%E5%BC%A5%E9%B9%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%AD%A6%E4%B9%A0python%E7%88%AC%E8%99%AB%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94python%E7%88%AC%E8%99%AB%E4%B8%A4%E4%B8%89%E4%BA%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -540,7 +486,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -634,7 +580,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -714,7 +660,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -789,7 +735,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -891,7 +837,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
@@ -972,7 +918,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-10-03 14:57:14" itemprop="dateModified" datetime="2020-10-03T14:57:14+08:00">2020-10-03</time>
+        <time title="修改时间：2020-10-03 15:03:04" itemprop="dateModified" datetime="2020-10-03T15:03:04+08:00">2020-10-03</time>
       </span>
 
   
