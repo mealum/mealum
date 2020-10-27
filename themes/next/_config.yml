@@ -53,7 +53,7 @@ favicon:
   small: /images/deer.ico
   medium: /images/deer.ico
   apple_touch_icon: /images/deer.ico
-  safari_pinned_tab: /images/logo.svg
+  safari_pinned_tab: /images/deer.ico
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -80,9 +80,9 @@ creative_commons:
 # Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # External url should start with http:// or https://
-# menu:
-#   home: / || fa fa-home
-#   about: /about/ || fa fa-user
+menu:
+  home: / || fa fa-home
+  about: /about/ || fa fa-user
 #   tags: /tags/ || fa fa-tags
 #   categories: /categories/ || fa fa-th
 #   archives: /archives/ || fa fa-archive
@@ -104,7 +104,7 @@ menu_settings:
 sidebar:
   # Sidebar Position.
   position: left
-  #position: right
+  # position: right
 
   # Manual define the sidebar width. If commented, will be default for:
   # Muse | Mist: 320
@@ -122,6 +122,8 @@ sidebar:
   padding: 18
   # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
   offset: 12
+
+  b2t: true
 
 # Sidebar Avatar
 avatar:
@@ -141,8 +143,8 @@ site_state: true
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
   #GitHub: https://github.com/yourname || fab fa-github
-  #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
-  Weibo: https://weibo.com/u/7510979499 || fab fa-weibo
+  E-Mail: mailto:mealum89@gmail.com || fa fa-envelope
+  #Weibo: https://weibo.com/u/7510979499 || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
   #Twitter: https://twitter.com/yourname || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
@@ -200,7 +202,7 @@ language_switcher: false
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2019
 
   # Icon between year and copyright info.
   icon:
@@ -409,7 +411,7 @@ github_banner:
 # ---------------------------------------------------------------
 
 font:
-  enable: false
+  enable: true
 
   # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
   host:
@@ -423,24 +425,25 @@ font:
   global:
     external: true
     family: Lato
-    size:
+    size: 0.8
 
   # Font settings for site title (.site-title).
   title:
     external: true
     family:
-    size:
+    size: 1
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family:
-    size:
+    family: Lato
+    size: 1
 
   # Font settings for posts (.post-body).
   posts:
     external: true
-    family:
+    family: Lato
+    size: 1
 
   # Font settings for <code> and code blocks.
   codes:
@@ -579,8 +582,8 @@ comments:
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: mealum
   count: true
 
 # DisqusJS
